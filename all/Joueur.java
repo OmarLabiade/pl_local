@@ -1,11 +1,12 @@
-
+import java.util.List;
+import java.util.ArrayList;
 
 public class Joueur {
 
     private String nom;
     private int position;
     private int solde;
-    private List<CasePropriete> proprietes;
+    private List<CaseProprieteAchetable> proprietes;
     private boolean enPrison;
     private int toursEnPrison;
     private int cartesSortiePrison;
@@ -15,7 +16,7 @@ public class Joueur {
         this.nom = nom;
         this.position = 0;
         this.solde = soldeInitial;
-        this.proprietes = new ArrayList<>();
+        this.proprietes = new ArrayList<CaseProprieteAchetable>();
         this.enPrison = false;
         this.toursEnPrison = 0;
         this.cartesSortiePrison = 0;
@@ -37,9 +38,9 @@ public class Joueur {
         }
     }
 
-    public void acheterPropriete(CasePropriete propriete) {
-        if (this.solde >= propriete.getPrix()) {
-            retirerArgent(propriete.getPrix());
+    public void acheterPropriete(CaseProprieteAchetable propriete) {
+        if (this.solde >= propriete.getPrixAchat()) {
+            retirerArgent(propriete.getPrixAchat());
             proprietes.add(propriete);
             propriete.setProprietaire(this);
         }
@@ -50,7 +51,6 @@ public class Joueur {
         this.toursEnPrison = 0;
         this.position = 10; // Par défaut, la case prison
     }
-
 
     public String getNom() { 
         return this.nom; 
@@ -72,7 +72,7 @@ public class Joueur {
         return this.estActif; 
     }
 
-    public List<CasePropriete> getProprietes() { 
+    public List<CaseProprieteAchetable> getProprietes() { 
         return this.proprietes; 
     }
 
@@ -83,7 +83,4 @@ public class Joueur {
     public int getCartesSortiePrison() { 
         return this.cartesSortiePrison; 
     }
-
-    // version temporaire
-
 }

@@ -1,7 +1,8 @@
-
+package src.main.monopoly.jeuMonopoly;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Classe représentant l'arbitre du jeu de Monopoly.
@@ -30,22 +31,70 @@ public class JeuMonopoly {
      * Démarre la partie de Monopoly.
      * Cette méthode contient la boucle principale du jeu.
      */
-    public void demarrerJeu() {
-        while (!jeuTermine()) {
-            Joueur joueurActuel = getJoueurActuel();
-            
-            System.out.println("\n--- Tour de " + joueurActuel.getNom() + " ---");
-            System.out.println("Position : " + joueurActuel.getPosition());
-            System.out.println("Argent : " + joueurActuel.getArgent() + "€");
-            
-            faireJouer(joueurActuel);
-            
-            // Passer au joueur suivant
+    /**
+ * Démarre la partie de Monopoly.
+ * Cette méthode contient la boucle principale du jeu.
+ */
+public void demarrerJeu() {
+    System.out.println("La partie démarre !");
+    
+    // Boucle principale du jeu
+    while (!jeuTermine()) {
+        Joueur joueurActuel = getJoueurActuel();
+        
+        // Affichage informations tour
+        System.out.println("\n=== Tour de " + joueurActuel.getNom() + " ===");
+        System.out.println("Argent : " + joueurActuel.getSolde() + "€");
+        System.out.println("Position : " + joueurActuel.getPosition());
+        
+        // Vérifie si le joueur est en banqueroute
+        if (!joueurActuel.estActif()) {
+            System.out.println(joueurActuel.getNom() + " est non actif, il ne joue pas.");
             joueurSuivant();
+            continue;
         }
         
-        System.out.println("\nLe jeu est terminé !");
+        // Gestion du tour de jeu
+        faireJouer(joueurActuel);
+        
+        // Affichage état final du joueur
+        System.out.println(joueurActuel.getNom() + " possède à la fin de son tour :");
+        System.out.println("- Argent : " + joueurActuel.getSolde() + "€");
+        if (!joueurActuel.getProprietes().isEmpty()) {
+            System.out.println("- Propriétés :");
+            for (CasesPropriete propriete : joueurActuel.getProprietes()) {
+                System.out.println("  * " + propriete.getNom());
+            }
+        }
+        
+        // Passage au joueur suivant
+        joueurSuivant();
+        
+        // Petite pause entre les tours
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
+    
+    // Fin de partie
+    Joueur gagnant = null;
+    for (Joueur joueur : joueurs) {
+        if (joueur.estActif()) {
+            gagnant = joueur;
+            break;
+        }
+    }
+    
+    if (gagnant != null) {
+        System.out.println("\n=== Fin de la partie ===");
+        System.out.println("Le vainqueur est " + gagnant.getNom() + " !");
+    } else {
+        System.out.println("\n=== Fin de la partie ===");
+        System.out.println("Tous les joueurs sont en banqueroute !");
+    }
+}
 
     /**
      * Ajoute un joueur au jeu.

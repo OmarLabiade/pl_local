@@ -13,7 +13,7 @@ public abstract class CaseAction extends Case {
     public void surCase(Joueur joueur) {
         if (!paquet.isEmpty()) {
             Carte carte = paquet.pop();
-            System.out.println(joueur.getNom() + " tire : " + carte.description);
+            System.out.println(joueur.getNom() + " tire : " + carte.getDescription());
             carte.appliquerEffet();
         }
     }
