@@ -1,4 +1,3 @@
-package src.main.monopoly.jeuMonopoly;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -26,14 +26,25 @@ public class CaseRue extends CaseProprieteAchetable {
     }
 
     public String getCouleurGroupe() { 
-        return couleurGroupe; 
+        return this.couleurGroupe; 
     }
 
+    public int getPrixMaison() { 
+        return this.prixMaison; 
+    }
+
+    public int getPrixHotel() { 
+        return this.prixHotel; 
+    }
+
+    public int getNbMaison() { 
+        return this.nbMaisons; 
+    }
     // 
     @Override
     public int calculerLoyer() {
-        if (aHotel) return loyers[5];
-        return loyers[nbMaisons];
+        if (aHotel) return this.loyers[5];
+        return this.loyers[this.nbMaisons];
     }
 
     public boolean aMonopole(List<CaseRue> groupeCouleur) {
@@ -47,8 +58,17 @@ public class CaseRue extends CaseProprieteAchetable {
             throw new IllegalStateException("Vous n'êtes pas le propriétaire !");
         }
         if (nbMaisons < 4) {
-            joueur.retirerArgent(prixMaison);
-            nbMaisons++;
+            joueur.retirerArgent(this.prixMaison);
+            this.nbMaisons++;
+        }
+    }
+
+    public void detruireMaison(Joueur joueur) {
+        if (joueur != getProprietaire()) {
+            throw new IllegalStateException("Vous n'êtes pas le propriétaire !");
+        }
+        if (nbMaisons > 0) {
+            this.nbMaisons--;
         }
     }
 }

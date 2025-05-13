@@ -7,11 +7,7 @@ public class CaseGo extends Case {
         super("Go", position); // Nom de la case
         this.bonus = bonus;
     }
-    @Override
-    public void surCase(monopoly.joueur.Joueur joueur) {
-        // Méthode vide car le joueur ne reçoit l'argent que quand il **passe** la case
-        // (Géré par Plateau lors du déplacement)
-    }
+    
     @Override
     public void surCase(Joueur joueur) {
         // Méthode vide car le joueur ne reçoit l'argent que quand il **passe** la case

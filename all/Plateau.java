@@ -18,7 +18,7 @@ public class Plateau {
         cases.add(new CaseRue("Boulevard de Belleville", 1, 60, "Marron", 50, 50, new int[]{2, 10, 30, 90, 160, 250}));
         cases.add(new CaseCommunaute(2, initPaquetCommunaute()));
         cases.add(new CaseRue("Rue Lecourbe", 3, 60, "Marron", 50, 50, new int[]{4, 20, 60, 180, 320, 450}));
-        cases.add(new CaseTaxe("Impôt sur le revenu", 4, 200));
+        cases.add(new CaseImpot("Impôt sur le revenu", 4, 200));
         cases.add(new CaseGare("Gare Montparnasse", 5, 200));
         cases.add(new CaseRue("Rue de Vaugirard", 6, 100, "Bleu clair", 50, 50, new int[]{6, 30, 90, 270, 400, 550}));
         cases.add(new CaseChance(7, initPaquetChance()));
@@ -64,7 +64,7 @@ public class Plateau {
         cases.add(new CaseGare("Gare Saint-Lazare", 35, 200));
         cases.add(new CaseChance(36, initPaquetChance()));
         cases.add(new CaseRue("Avenue des Champs-Élysées", 37, 350, "Bleu foncé", 200, 200, new int[]{35, 175, 500, 1100, 1300, 1500}));
-        cases.add(new CaseTaxe("Taxe de luxe", 38, 100));
+        cases.add(new CaseImpot("Taxe de luxe", 38, 100));
         cases.add(new CaseRue("Rue de la Paix", 39, 400, "Bleu foncé", 200, 200, new int[]{50, 200, 600, 1400, 1700, 2000}));
     }
 
